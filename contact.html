@@ -1,23 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="슬로우벗베럴 방문, 단체 이용 및 예약 가능 여부 문의 전화 안내와 예시 폼.">
-  <title>예약·문의 | 슬로우벗베럴 대구</title>
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/contact.css">
-</head>
-<body>
-<a class="skip-link" href="#main">본문 바로가기</a>
-<header class="site-header"><div class="header-inner"><a class="brand" href="index.html" aria-label="슬로우벗베럴 홈으로"><span class="brand-mark">S<span class="brand-dot">.</span></span><span class="brand-text">SLOW BUT BETTER<small>DAEGU · YONGGYE</small></span></a><input class="nav-toggle" id="nav-toggle" type="checkbox" aria-label="모바일 메뉴 열기"><label class="nav-trigger" for="nav-toggle" aria-label="메뉴 열고 닫기"><span></span><span></span><span></span></label><nav class="site-nav" aria-label="주요 메뉴"><a href="index.html">홈</a>
-<a href="menu.html">메뉴</a>
-<a href="about.html">가게 소개</a>
-<a href="location.html">오시는 길</a>
-<a href="contact.html" aria-current="page">예약·문의</a></nav></div></header>
-<main id="main">
-<section class="page-hero"><div class="container"><span class="eyebrow">CONTACT</span><h1>편하게 문의하세요</h1><p>방문·단체 이용·예약 가능 여부를 문의하고 싶으시다면 전화로 확인해 주세요.</p></div></section><section class="section-space"><div class="container contact-layout"><section class="contact-card"><span class="eyebrow">DIRECT CONTACT</span><h2>전화로 먼저 확인하기</h2><p>주차 조건, 단체 좌석, 영업시간 등은 매장에 문의하면 가장 정확합니다.</p><a class="phone-number" href="tel:050713059611">0507-1305-9611</a><div class="button-row"><a class="button" href="tel:050713059611">전화 연결하기</a><a class="button button-outline" href="location.html">오시는 길</a></div><p class="contact-tip">※ 예약 서비스 운영 여부는 확인이 필요합니다.</p></section><section class="contact-card form-card"><span class="eyebrow">INQUIRY FORM · DEMO</span><h2>예약·문의 양식</h2><p>HTML/CSS 과제용 입력 폼입니다. 실제 전송·저장 기능은 연결되지 않습니다.</p><form class="inquiry-form" action="#" method="get"><div class="field"><label for="customer-name">이름 <span aria-hidden="true">*</span></label><input id="customer-name" name="customer-name" type="text" autocomplete="name" placeholder="이름을 입력하세요" required></div><div class="field"><label for="customer-phone">연락처 <span aria-hidden="true">*</span></label><input id="customer-phone" name="customer-phone" type="tel" autocomplete="tel" placeholder="010-0000-0000" required></div><div class="field"><label for="inquiry-type">문의 종류</label><select id="inquiry-type" name="inquiry-type"><option value="visit">방문 문의</option><option value="group">단체 이용 문의</option><option value="reservation">예약 가능 여부 문의</option><option value="other">기타 문의</option></select></div><div class="field"><label for="customer-message">문의 내용</label><textarea id="customer-message" name="customer-message" rows="5" placeholder="궁금한 내용을 적어주세요."></textarea></div><div class="consent"><input id="privacy-check" type="checkbox"><label for="privacy-check">개인정보 수집 동의 (디자인 예시 · 실제 정보는 전송되지 않음)</label></div><button class="button button-disabled" type="button" disabled>등록 기능 준비 중</button><p class="form-notice">※ 전송 버튼은 과제 실습을 위해 비활성화되어 있습니다. 이름이나 전화번호 등 실제 개인정보는 입력하지 마세요.</p></form></section></div></section>
-</main>
-<footer class="site-footer"><div class="container footer-layout"><div><a class="footer-brand" href="index.html">SLOW BUT BETTER<span class="accent">.</span></a><p>바쁜 일상 속, 조금 더 천천히.</p></div><div class="footer-info"><p>대구광역시 동구 신평로 113</p><p>매장 전화 <a href="tel:050713059611">0507-1305-9611</a></p><p>영업시간 및 이용 정책은 방문 전 확인해 주세요.</p></div></div><div class="container footer-bottom">© 2026 SLOW BUT BETTER · 학습용 비공식 소개 사이트</div></footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="슬로우벗베럴 방문, 단체 이용 및 예약 가능 여부 문의 전화 안내와 예시 폼."
+    />
+    <title>예약·문의 | 슬로우벗베럴 대구</title>
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="슬로우벗베럴 홈으로"
+          ><span class="brand-mark">S<span class="brand-dot">.</span></span
+          ><span class="brand-text"
+            >SLOW BUT BETTER<small>DAEGU · YONGGYE</small></span
+          ></a
+        ><input
+          class="nav-toggle"
+          id="nav-toggle"
+          type="checkbox"
+          aria-label="모바일 메뉴 열기"
+        /><label
+          class="nav-trigger"
+          for="nav-toggle"
+          aria-label="메뉴 열고 닫기"
+          ><span></span><span></span><span></span
+        ></label>
+        <nav class="site-nav" aria-label="주요 메뉴">
+          <a href="index.html">홈</a>
+          <a href="menu.html">메뉴</a>
+          <a href="about.html">가게 소개</a>
+          <a href="location.html">오시는 길</a>
+          <a href="contact.html" aria-current="page">예약·문의</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <span class="eyebrow">CONTACT</span>
+          <h1>편하게 문의하세요</h1>
+          <p>
+            방문·단체 이용·예약 가능 여부를 문의하고 싶으시다면 전화로 확인해
+            주세요.
+          </p>
+        </div>
+      </section>
+      <section class="section-space">
+        <div class="container contact-layout">
+          <section class="contact-card">
+            <span class="eyebrow">DIRECT CONTACT</span>
+            <h2>전화로 먼저 확인하기</h2>
+            <p>
+              주차 조건, 단체 좌석, 영업시간 등은 매장에 문의하면 가장
+              정확합니다.
+            </p>
+            <a class="phone-number" href="tel:050713059611">0507-1305-9611</a>
+            <div class="button-row">
+              <a class="button" href="tel:050713059611">전화 연결하기</a
+              ><a class="button button-outline" href="location.html"
+                >오시는 길</a
+              >
+            </div>
+            <p class="contact-tip">
+              ※ 예약 서비스 운영 여부는 확인이 필요합니다.
+            </p>
+          </section>
+          <section class="contact-card form-card">
+            <span class="eyebrow">INQUIRY FORM · DEMO</span>
+            <h2>예약·문의 양식</h2>
+            <p>
+              HTML/CSS 과제용 입력 폼입니다. 실제 전송·저장 기능은 연결되지
+              않습니다.
+            </p>
+            <form class="inquiry-form" action="#" method="get">
+              <div class="field">
+                <label for="customer-name"
+                  >이름 <span aria-hidden="true">*</span></label
+                ><input
+                  id="customer-name"
+                  name="customer-name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="이름을 입력하세요"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="customer-phone"
+                  >연락처 <span aria-hidden="true">*</span></label
+                ><input
+                  id="customer-phone"
+                  name="customer-phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="010-0000-0000"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="inquiry-type">문의 종류</label
+                ><select id="inquiry-type" name="inquiry-type">
+                  <option value="visit">방문 문의</option>
+                  <option value="group">단체 이용 문의</option>
+                  <option value="reservation">예약 가능 여부 문의</option>
+                  <option value="other">기타 문의</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="customer-message">문의 내용</label
+                ><textarea
+                  id="customer-message"
+                  name="customer-message"
+                  rows="5"
+                  placeholder="궁금한 내용을 적어주세요."
+                ></textarea>
+              </div>
+              <div class="consent">
+                <input id="privacy-check" type="checkbox" /><label
+                  for="privacy-check"
+                  >개인정보 수집 동의 (디자인 예시 · 실제 정보는 전송되지
+                  않음)</label
+                >
+              </div>
+              <button class="button button-disabled" type="button" disabled>
+                등록 기능 준비 중
+              </button>
+              <p class="form-notice">
+                ※ 전송 버튼은 과제 실습을 위해 비활성화되어 있습니다. 이름이나
+                전화번호 등 실제 개인정보는 입력하지 마세요.
+              </p>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <div>
+          <a class="footer-brand" href="index.html"
+            >SLOW BUT BETTER<span class="accent">.</span></a
+          >
+          <p>바쁜 일상 속, 조금 더 천천히.</p>
+        </div>
+        <div class="footer-info">
+          <p>대구광역시 동구 신평로 113</p>
+          <p>매장 전화 <a href="tel:050713059611">0507-1305-9611</a></p>
+          <p>영업시간 및 이용 정책은 방문 전 확인해 주세요.</p>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        © 2026 SLOW BUT BETTER · 학습용 비공식 소개 사이트
+      </div>
+    </footer>
+  </body>
 </html>

@@ -1,1 +1,67 @@
-.about-intro{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:50px}.about-intro p{color:var(--muted);margin-bottom:18px}.about-intro .button{margin-top:12px}.about-intro figure{margin:0;min-height:400px}.gallery-section{background:var(--cream)}.gallery-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;padding-bottom:18px;margin:20px 0 23px}.gallery-grid figure{flex:0 0 calc((100% - 36px)/3);margin:0;scroll-snap-align:start;height:285px}.gallery-grid figcaption{position:absolute;bottom:0;left:0;right:0;background:#34483acc;color:var(--white);padding:9px 14px;font-weight:700}.gallery-grid .photo-frame img{height:100%;object-fit:cover}@media(max-width:960px){.gallery-grid figure{flex-basis:calc((100% - 18px)/2)}}@media(max-width:700px){.about-intro{grid-template-columns:1fr;gap:27px}.about-intro figure{min-height:250px;height:260px}.gallery-grid figure{flex-basis:85%;height:255px}}
+.about-intro {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 50px;
+}
+.about-intro p {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.about-intro .button {
+  margin-top: 12px;
+}
+.about-intro figure {
+  margin: 0;
+  min-height: 400px;
+}
+.gallery-section {
+  background: var(--cream);
+}
+.gallery-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 18px;
+  padding-bottom: 18px;
+  margin: 20px 0 23px;
+}
+.gallery-grid figure {
+  flex: 0 0 calc((100% - 36px) / 3);
+  margin: 0;
+  scroll-snap-align: start;
+  height: 285px;
+}
+.gallery-grid figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #34483acc;
+  color: var(--white);
+  padding: 9px 14px;
+  font-weight: 700;
+}
+.gallery-grid .photo-frame img {
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 960px) {
+  .gallery-grid figure {
+    flex-basis: calc((100% - 18px) / 2);
+  }
+}
+@media (max-width: 700px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+  .about-intro figure {
+    min-height: 250px;
+    height: 260px;
+  }
+  .gallery-grid figure {
+    flex-basis: 85%;
+    height: 255px;
+  }
+}
