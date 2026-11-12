@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/home.css" />
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#main">본문 바로가기</a>
     <header class="site-header">
       <div class="header-inner">
@@ -25,7 +25,7 @@
           class="nav-toggle"
           id="nav-toggle"
           type="checkbox"
-          aria-label="모바일 메뉴 열기"
+          aria-label="모바일 메뉴 펼치기"
         />
         <label class="nav-trigger" for="nav-toggle" aria-label="메뉴 열고 닫기"
           ><span></span><span></span><span></span
@@ -40,7 +40,7 @@
       </div>
     </header>
     <main id="main">
-      <!-- Full-bleed editorial hero: CSS crossfade only -->
+      <!-- 첫 화면의 이미지는 CSS에서 교체. 4개 이미지가 자동 전환됩니다. -->
       <section class="editorial-hero" aria-labelledby="hero-title">
         <div class="hero-slides" aria-hidden="true">
           <div class="hero-slide slide-one"></div>
@@ -48,100 +48,91 @@
           <div class="hero-slide slide-three"></div>
           <div class="hero-slide slide-four"></div>
         </div>
-        <div class="hero-shade"></div>
+        <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-content">
-          <span class="hero-kicker">SLOW BUT BETTER — DAEGU</span>
-          <h1 id="hero-title">바쁜 일상 속,<br /><em>조금 더 천천히.</em></h1>
-          <p>
-            용계역 가까이, 커피와 공간이 주는 작은 쉼표.<br />잠시 머물고 싶은
-            시간, 슬로우벗베럴.
-          </p>
+          <span class="hero-kicker">SLOW BUT BETTER · DAEGU</span>
+          <h1 id="hero-title">
+            바쁜 일상 속,<br />
+            조금 더<br />
+            천천히
+          </h1>
+
           <div class="button-row">
-            <a class="hero-action" href="about.html"
-              >공간 둘러보기 <span aria-hidden="true">↗</span></a
-            ><a class="hero-action ghost" href="location.html"
+            <a class="hero-action" href="menu.html"
+              >메뉴 둘러보기 <span aria-hidden="true">↗</span></a
+            >
+            <a class="hero-action ghost" href="location.html"
               >오시는 길 <span aria-hidden="true">↗</span></a
             >
           </div>
         </div>
-        <div class="hero-bottom">
-          <span>01 — OUR SLOW MOMENT</span
-          ><a href="#discover">SCROLL TO DISCOVER ↓</a
-          ><span>YONGGYE, DAEGU</span>
+        <div class="hero-bottom" aria-hidden="true">
+          <span>01 / 01</span><span>SCROLL TO DISCOVER ↓</span>
         </div>
       </section>
-
+      <section class="home-intro" aria-labelledby="intro-title">
+        <span class="eyebrow">ABOUT SLOW BUT BETTER</span>
+        <h2 id="intro-title">일상의 속도를 잠시 늦추는 공간.</h2>
+        <p>
+          넓고 편안한 공간, 향긋한 커피와 베이커리.<br />용계역 가까이에서
+          나만의 여유를 만나보세요.
+        </p>
+        <a class="underlined-link" href="about.html">카페 소개 보기 ↗</a>
+      </section>
       <section class="motion-gallery" aria-labelledby="gallery-title">
         <div class="section-caption">
-          <span class="eyebrow">02 / MOMENTS IN MOTION</span>
-          <h2 id="gallery-title">공간과 메뉴, 한눈에</h2>
+          <span class="eyebrow">OUR MOMENTS</span>
+          <h2 id="gallery-title">슬로우벗베럴의 순간들</h2>
         </div>
         <div class="gallery-window">
           <div class="gallery-track">
             <figure>
               <img
                 src="images/cafe-exterior.jpg"
-                alt="노을이 물든 슬로우벗베럴 건물 외관과 야외 좌석"
+                alt="노을이 물든 카페 건물과 야외 테이블"
               />
-              <figcaption>THE PLACE</figcaption>
             </figure>
             <figure>
               <img
                 src="images/better-white.jpg"
-                alt="잔에 담긴 슬로우벗베럴의 베럴 화이트 아이스 라떼"
+                alt="얼음이 담긴 베럴 화이트 라떼"
               />
-              <figcaption>BETTER WHITE</figcaption>
             </figure>
             <figure>
               <img
                 src="images/apricot-icecream.png"
-                alt="살구 과육과 민트 잎으로 장식한 살구가득 아이스크림"
+                alt="살구 과육을 올린 아이스크림"
               />
-              <figcaption>APRICOT ICE CREAM</figcaption>
             </figure>
             <figure>
               <img
                 src="images/bakery-display.jpg"
-                alt="크루아상과 다양한 빵, 음료를 함께 담은 베이커리 사진"
+                alt="다양한 빵과 음료가 놓인 베이커리 메뉴"
               />
-              <figcaption>BAKERY</figcaption>
             </figure>
             <figure>
               <img
                 src="images/cafe-counter.jpg"
-                alt="케이크가 진열된 슬로우벗베럴 쇼케이스와 매장 간판"
+                alt="매장 내부의 디저트 쇼케이스"
               />
-              <figcaption>CAFE MOMENTS</figcaption>
             </figure>
-            <!-- 반복 5장: CSS 끊김 없는 루프를 위해 동일 이미지 사용, 화면낭독에서는 숨김 -->
+            <!-- 같은 사진 5장을 순서대로 복제: 끊김 없는 반복을 위한 구성 -->
             <figure aria-hidden="true">
               <img src="images/cafe-exterior.jpg" alt="" />
-              <figcaption>THE PLACE</figcaption>
             </figure>
             <figure aria-hidden="true">
               <img src="images/better-white.jpg" alt="" />
-              <figcaption>BETTER WHITE</figcaption>
             </figure>
             <figure aria-hidden="true">
               <img src="images/apricot-icecream.png" alt="" />
-              <figcaption>APRICOT ICE CREAM</figcaption>
             </figure>
             <figure aria-hidden="true">
               <img src="images/bakery-display.jpg" alt="" />
-              <figcaption>BAKERY</figcaption>
             </figure>
             <figure aria-hidden="true">
               <img src="images/cafe-counter.jpg" alt="" />
-              <figcaption>CAFE MOMENTS</figcaption>
             </figure>
           </div>
-        </div>
-        <div class="gallery-bottom">
-          <p>
-            추가 사진은 <code>images</code> 폴더에 저장하고, 이 영역의 이미지
-            경로만 변경하면 됩니다.
-          </p>
-          <a class="underlined-link" href="menu.html">메뉴 전체 보기 ↗</a>
         </div>
       </section>
     </main>
