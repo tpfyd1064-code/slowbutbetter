@@ -9,6 +9,10 @@
     />
     <title>메뉴 | 슬로우벗베럴 대구</title>
     <link rel="stylesheet" href="css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
+    />
     <link rel="stylesheet" href="css/menu.css" />
   </head>
   <body>
@@ -52,7 +56,6 @@
         </div>
       </section>
 
-      <main id="main">
         <section class="section-space">
           <div class="container">
             <!-- 과일 소개 배너: 가로 전체 -->
@@ -74,7 +77,7 @@
             <!-- 메뉴 목록: PC 2열 -->
             <div class="menu-layout">
               <!-- COFFEE -->
-              <section class="menu-group">
+              <section class="menu-group" data-aos="fade-up" data-aos-delay="0">
                 <h2>COFFEE</h2>
                 <ul>
                   <li class="menu-item">
@@ -108,7 +111,7 @@
               </section>
 
               <!-- SIGNATURE -->
-              <section class="menu-group">
+              <section class="menu-group" data-aos="fade-up" data-aos-delay="100">
                 <h2>SIGNATURE & HAND DRIP</h2>
                 <ul>
                   <li class="menu-item">
@@ -136,7 +139,7 @@
               </section>
 
               <!-- SEASONAL FRUIT -->
-              <section class="menu-group">
+              <section class="menu-group" data-aos="fade-up" data-aos-delay="200">
                 <h2>SEASONAL FRUIT</h2>
                 <ul>
                   <li class="menu-item">
@@ -178,7 +181,7 @@
               </section>
 
               <!-- NON-COFFEE -->
-              <section class="menu-group">
+              <section class="menu-group" data-aos="fade-up" data-aos-delay="300">
                 <h2>NON-COFFEE</h2>
                 <ul>
                   <li class="menu-item">
@@ -241,7 +244,11 @@
             </p>
           </div>
         </section>
-      </main>
     </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"
+      defer
+    ></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>
