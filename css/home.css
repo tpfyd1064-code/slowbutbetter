@@ -218,17 +218,14 @@
   overflow: hidden;
   width: 100%;
 }
-.gallery-window .swiper-slide {
+.home-page .gallery-window .swiper-slide {
   margin: 0;
-  height: auto;
-  aspect-ratio: 320 / 220;
   overflow: hidden;
   background: #dedad0;
 }
-.gallery-window .swiper-slide img {
+.home-page .gallery-window .swiper-slide img {
   display: block;
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 .motion-gallery .gallery-window {
@@ -303,6 +300,73 @@
 
 .motion-gallery .gallery-pagination .swiper-pagination-bullet-active {
   background: #9a7653;
+}
+@media (min-width: 1024px) {
+  .home-page .home-second-screen {
+    box-sizing: border-box;
+    min-height: 100dvh;
+    padding-top: var(--home-header-height, 0px);
+  }
+
+  .home-page .home-second-screen .home-intro {
+    padding: clamp(8px, 1.2dvh, 14px) 20px;
+  }
+
+  .home-page .home-second-screen .home-intro h2 {
+    margin: 4px 0 3px;
+    font-size: clamp(1.35rem, 1.8vw, 1.8rem);
+    line-height: 1.2;
+  }
+
+  .home-page .home-second-screen .home-intro p {
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .home-page .home-second-screen .underlined-link {
+    margin-top: 5px;
+    padding-bottom: 3px;
+  }
+
+  .home-page .home-second-screen .motion-gallery {
+    overflow: visible;
+    padding: 8px 0 6px;
+  }
+
+  .home-page .home-second-screen .section-caption {
+    padding: 0 20px 8px;
+  }
+
+  .home-page .home-second-screen .section-caption h2 {
+    margin: 3px 0;
+    font-size: clamp(1.2rem, 1.7vw, 1.8rem);
+  }
+
+  .home-page .home-second-screen .gallery-window {
+    height: clamp(260px, 60dvh, 600px);
+  }
+
+  .home-page .home-second-screen .gallery-window .swiper,
+  .home-page .home-second-screen .gallery-window .swiper-wrapper,
+  .home-page .home-second-screen .gallery-window .swiper-slide {
+    height: clamp(260px, 60dvh, 600px);
+  }
+
+  .home-page .home-second-screen .gallery-window .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .home-page .home-second-screen .gallery-controls {
+    padding-top: 6px;
+  }
+}
+@media (max-width: 1023px) {
+  .home-page .gallery-window .swiper-slide,
+  .home-page .gallery-window .swiper-slide img {
+    height: auto;
+  }
 }
 @media (max-width: 900px) {
   .hero-content {
@@ -394,12 +458,6 @@
   }
   .hero-slide.slide-one {
     opacity: 1;
-  }
-}
-
-@media (max-width: 700px) {
-  .gallery-window .swiper-slide {
-    aspect-ratio: 250 / 180;
   }
 }
 

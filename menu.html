@@ -13,6 +13,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="css/menu.css" />
   </head>
   <body>
@@ -74,159 +78,92 @@
               </div>
             </aside>
 
-            <!-- 메뉴 목록: PC 2열 -->
-            <div class="menu-layout">
-              <!-- COFFEE -->
-              <section class="menu-group" data-aos="fade-up" data-aos-delay="0">
-                <h2>COFFEE</h2>
-                <ul>
-                  <li class="menu-item">
-                    <div><strong>아메리카노</strong></div>
-                    <span>5,500원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>에스프레소</strong></div>
-                    <span>5,500원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>카페 라떼</strong></div>
-                    <span>5,800원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>바닐라 빈 라떼</strong></div>
-                    <span>6,000원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>카푸치노</strong>
-                      <small>HOT ONLY</small>
-                    </div>
-                    <span>5,800원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>아포가토</strong></div>
-                    <span>7,000원</span>
-                  </li>
-                </ul>
-              </section>
+            <section
+              class="menu-explorer"
+              data-aos="fade-up"
+              aria-label="메뉴 둘러보기"
+            >
+              <aside class="menu-explorer-sidebar">
+                <span class="menu-explorer-kicker">SLOW MENU</span>
+                <h2>천천히<br />골라보세요</h2>
+                <p>좋아하는 메뉴를 선택해 둘러보세요.</p>
+                <nav class="menu-categories" aria-label="메뉴 카테고리">
+                  <button
+                    type="button"
+                    data-category="all"
+                    aria-pressed="true"
+                  >
+                    전체 메뉴
+                  </button>
+                  <button
+                    type="button"
+                    data-category="coffee"
+                    aria-pressed="false"
+                  >
+                    Coffee
+                  </button>
+                  <button
+                    type="button"
+                    data-category="signature"
+                    aria-pressed="false"
+                  >
+                    Signature &amp; Hand Drip
+                  </button>
+                  <button
+                    type="button"
+                    data-category="fruit"
+                    aria-pressed="false"
+                  >
+                    Seasonal Fruit
+                  </button>
+                  <button
+                    type="button"
+                    data-category="noncoffee"
+                    aria-pressed="false"
+                  >
+                    Non-Coffee
+                  </button>
+                  <button
+                    type="button"
+                    data-category="bread"
+                    aria-pressed="false"
+                  >
+                    Bakery
+                  </button>
+                </nav>
+              </aside>
 
-              <!-- SIGNATURE -->
-              <section class="menu-group" data-aos="fade-up" data-aos-delay="100">
-                <h2>SIGNATURE & HAND DRIP</h2>
-                <ul>
-                  <li class="menu-item">
-                    <div>
-                      <strong>베럴 화이트</strong>
-                      <small>ICE ONLY · 에스프레소와 직접 블렌딩한 우유</small>
-                    </div>
-                    <span>6,300원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>카라멜</strong>
-                      <small>HOT/ICE · 카라멜의 달콤함과 시나몬</small>
-                    </div>
-                    <span>6,700원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>에티오피아 내추럴</strong>
-                      <small>핸드드립 · Ethiopia Sidamo Keramo Natural</small>
-                    </div>
-                    <span>6,300원</span>
-                  </li>
-                </ul>
-              </section>
-
-              <!-- SEASONAL FRUIT -->
-              <section class="menu-group" data-aos="fade-up" data-aos-delay="200">
-                <h2>SEASONAL FRUIT</h2>
-                <ul>
-                  <li class="menu-item">
-                    <div>
-                      <strong>살구가득 스무디</strong>
-                      <small>시즌 한정</small>
-                    </div>
-                    <span>7,500원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>살구가득 아이스크림</strong>
-                      <small>시즌 한정</small>
-                    </div>
-                    <span>7,500원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>복숭아가득 스무디</strong>
-                      <small>시즌 한정</small>
-                    </div>
-                    <span>7,900원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>피치 요거트 라떼</strong>
-                      <small>시즌 한정</small>
-                    </div>
-                    <span>7,500원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>복숭아 가득 빙수</strong>
-                      <small>시즌 한정</small>
-                    </div>
-                    <span>27,000원</span>
-                  </li>
-                </ul>
-              </section>
-
-              <!-- NON-COFFEE -->
-              <section class="menu-group" data-aos="fade-up" data-aos-delay="300">
-                <h2>NON-COFFEE</h2>
-                <ul>
-                  <li class="menu-item">
-                    <div><strong>옛날팥빙수</strong></div>
-                    <span>16,000원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>제주말차라떼</strong></div>
-                    <span>6,100원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>초코라떼</strong></div>
-                    <span>5,700원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>복숭아 아이스티</strong></div>
-                    <span>5,500원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>청귤오미자에이드</strong></div>
-                    <span>6,700원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>망고레몬에이드</strong></div>
-                    <span>6,700원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>캐모마일 / 얼그레이 / 히비스커스</strong></div>
-                    <span>5,100원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div>
-                      <strong>오미자몽</strong>
-                      <small>HOT/ICE</small>
-                    </div>
-                    <span>6,100원</span>
-                  </li>
-                  <li class="menu-item">
-                    <div><strong>생강차</strong></div>
-                    <span>5,700원</span>
-                  </li>
-                </ul>
-              </section>
-            </div>
-            <!-- menu-layout 끝 -->
+              <div class="menu-explorer-content">
+                <header class="menu-explorer-heading">
+                  <div>
+                    <span class="menu-category-eyebrow">MENU COLLECTION</span>
+                    <h2 class="menu-category-title">전체 메뉴</h2>
+                  </div>
+                  <div class="menu-explorer-controls">
+                    <span class="menu-page-counter" aria-live="polite"
+                      >01 / 01</span
+                    >
+                    <button
+                      class="menu-prev"
+                      type="button"
+                      aria-label="이전 메뉴"
+                    >
+                      <span aria-hidden="true">←</span>
+                    </button>
+                    <button
+                      class="menu-next"
+                      type="button"
+                      aria-label="다음 메뉴"
+                    >
+                      <span aria-hidden="true">→</span>
+                    </button>
+                  </div>
+                </header>
+                <div class="swiper menu-swiper" aria-label="메뉴 상품">
+                  <div class="swiper-wrapper"></div>
+                </div>
+              </div>
+            </section>
 
             <!-- 추가 옵션 -->
             <div class="extras">
@@ -250,5 +187,11 @@
       defer
     ></script>
     <script src="js/main.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"
+      defer
+    ></script>
+    <script src="menujs/js/menu-data.js" defer></script>
+    <script src="js/menu.js" defer></script>
   </body>
 </html>

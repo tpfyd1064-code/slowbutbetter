@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="슬로우벗베럴 방문, 단체 이용 및 예약 가능 여부 문의 전화 안내와 예시 폼."
+      content="슬로우벗베럴 방문, 단체 이용 및 예약 가능 여부 문의 안내."
     />
     <title>예약·문의 | 슬로우벗베럴 대구</title>
     <link rel="stylesheet" href="css/common.css" />
@@ -72,19 +72,18 @@
             </p>
           </section>
           <section class="contact-card form-card">
-            <span class="eyebrow">INQUIRY FORM · DEMO</span>
+            <span class="eyebrow">INQUIRY FORM</span>
             <h2>예약·문의 양식</h2>
             <p>
-              HTML/CSS 과제용 입력 폼입니다. 실제 전송·저장 기능은 연결되지
-              않습니다.
+              문의 내용을 남겨주시면 확인 후 연락드리겠습니다.
             </p>
-            <form class="inquiry-form" action="#" method="get">
+            <form class="inquiry-form" action="#" method="post" novalidate>
               <div class="field">
                 <label for="customer-name"
                   >이름 <span aria-hidden="true">*</span></label
                 ><input
                   id="customer-name"
-                  name="customer-name"
+                  name="name"
                   type="text"
                   autocomplete="name"
                   placeholder="이름을 입력하세요"
@@ -96,7 +95,7 @@
                   >연락처 <span aria-hidden="true">*</span></label
                 ><input
                   id="customer-phone"
-                  name="customer-phone"
+                  name="phone"
                   type="tel"
                   autocomplete="tel"
                   placeholder="010-0000-0000"
@@ -105,7 +104,7 @@
               </div>
               <div class="field">
                 <label for="inquiry-type">문의 종류</label
-                ><select id="inquiry-type" name="inquiry-type">
+                ><select id="inquiry-type" name="inquiry_type">
                   <option value="visit">방문 문의</option>
                   <option value="group">단체 이용 문의</option>
                   <option value="reservation">예약 가능 여부 문의</option>
@@ -116,24 +115,27 @@
                 <label for="customer-message">문의 내용</label
                 ><textarea
                   id="customer-message"
-                  name="customer-message"
+                  name="message"
                   rows="5"
                   placeholder="궁금한 내용을 적어주세요."
                 ></textarea>
               </div>
               <div class="consent">
-                <input id="privacy-check" type="checkbox" /><label
+                <input id="privacy-check" type="checkbox" required /><label
                   for="privacy-check"
-                  >개인정보 수집 동의 (디자인 예시 · 실제 정보는 전송되지
-                  않음)</label
+                  >문의 접수 및 답변을 위한 개인정보 수집·이용에 동의합니다.
+                  <span aria-hidden="true">*</span></label
                 >
               </div>
-              <button class="button button-disabled" type="button" disabled>
-                등록 기능 준비 중
+              <button class="button" type="submit">
+                문의 보내기
               </button>
-              <p class="form-notice">
-                ※ 전송 버튼은 과제 실습을 위해 비활성화되어 있습니다. 이름이나
-                전화번호 등 실제 개인정보는 입력하지 마세요.
+              <p
+                class="form-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
               </p>
             </form>
           </section>
@@ -158,5 +160,10 @@
         © 2026 SLOW BUT BETTER · 학습용 비공식 소개 사이트
       </div>
     </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"
+      defer
+    ></script>
+    <script src="js/contact.js" defer></script>
   </body>
 </html>

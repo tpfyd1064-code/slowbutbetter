@@ -149,3 +149,76 @@ if (detailGallery) {
     activeCard = null;
   });
 }
+
+const homepageHero = document.querySelector(".home-page .editorial-hero");
+const homepageSecondScreen = document.querySelector(
+  ".home-page .home-second-screen",
+);
+if (homepageHero && homepageSecondScreen) {
+  const homepageHeader = document.querySelector(".home-page .site-header");
+  const desktopViewport = window.matchMedia("(min-width: 1024px)");
+  let wheelTransitionLocked = false;
+
+  function updateHeaderSpace() {
+    const headerHeight = homepageHeader
+      ? homepageHeader.getBoundingClientRect().height
+      : 0;
+    homepageSecondScreen.style.setProperty(
+      "--home-header-height",
+      `${headerHeight}px`,
+    );
+  }
+
+  updateHeaderSpace();
+  window.addEventListener("resize", updateHeaderSpace, { passive: true });
+
+  window.addEventListener(
+    "wheel",
+    (event) => {
+      if (!desktopViewport.matches || event.defaultPrevented) return;
+      if (!event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+
+      const eventTarget = event.target;
+      if (
+        eventTarget instanceof Element &&
+        eventTarget.closest(
+          ".swiper, .gallery-window, .gallery-controls, a, button, input, select, textarea, [role='button'], [contenteditable='true']",
+        )
+      ) {
+        return;
+      }
+
+      if (wheelTransitionLocked) {
+        event.preventDefault();
+        return;
+      }
+
+      let destination = null;
+      if (
+        event.deltaY > 0 &&
+        window.scrollY < homepageSecondScreen.offsetTop - 1 &&
+        homepageHero.getBoundingClientRect().bottom > 0
+      ) {
+        destination = homepageSecondScreen;
+      } else if (
+        event.deltaY < 0 &&
+        Math.abs(homepageSecondScreen.getBoundingClientRect().top) <= 2
+      ) {
+        destination = homepageHero;
+      }
+
+      if (!destination) return;
+
+      event.preventDefault();
+      wheelTransitionLocked = true;
+      window.setTimeout(() => {
+        wheelTransitionLocked = false;
+      }, 750);
+      destination.scrollIntoView({
+        behavior: reducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    },
+    { passive: false },
+  );
+}
