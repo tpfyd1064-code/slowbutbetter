@@ -23,12 +23,74 @@
     explorer.querySelectorAll(".menu-categories button"),
   );
   const wrapper = explorer.querySelector(".menu-swiper .swiper-wrapper");
+  const swiperElement = explorer.querySelector(".menu-swiper");
   const title = explorer.querySelector(".menu-category-title");
   const counter = explorer.querySelector(".menu-page-counter");
   const previousButton = explorer.querySelector(".menu-prev");
   const nextButton = explorer.querySelector(".menu-next");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let activeCategory = "all";
   let swiper;
+  // Each card animates once per category render. Never reset a card when revisiting it.
+  const revealedCards = new WeakSet();
+  let menuIsVisible = false;
+  let firstRevealDone = false;
+  let changingCategory = false;
+
+  function getActiveCards(instance) {
+    const count = Math.max(1, Math.ceil(Number(instance.params.slidesPerView) || 1));
+    return Array.from(instance.slides || [])
+      .slice(instance.activeIndex, instance.activeIndex + count)
+      .map((slide) => slide.querySelector(".menu-card"))
+      .filter(Boolean);
+  }
+
+  // Start image loading for the current and next groups before they slide in.
+  // This avoids mistaking a late lazy-loaded photo for animation flicker.
+  function preloadNearbyPhotos(instance) {
+    const count = Math.max(1, Math.ceil(Number(instance.params.slidesPerView) || 1));
+    Array.from(instance.slides || [])
+      .slice(instance.activeIndex, instance.activeIndex + count * 2)
+      .forEach((slide) => {
+        const image = slide.querySelector(".menu-card-media img");
+        if (image) image.loading = "eager";
+      });
+  }
+
+  // For the initial/category entrance only: hide the group BEFORE it can paint.
+  // Other slides are never hidden, so dragging/swiping cannot show blank cards.
+  function prepareFirstGroup(instance) {
+    if (reduceMotion.matches) return;
+    wrapper.querySelectorAll(".menu-card.is-reveal-pending").forEach((card) => {
+      card.classList.remove("is-reveal-pending");
+    });
+    getActiveCards(instance).forEach((card) => {
+      if (!revealedCards.has(card)) card.classList.add("is-reveal-pending");
+    });
+  }
+
+  function revealActiveGroup(instance, entrance = "page") {
+    if (!menuIsVisible || reduceMotion.matches) return;
+    const cards = getActiveCards(instance).filter((card) => !revealedCards.has(card));
+    const entranceClass = entrance === "first" ? "is-first-entering" : "is-page-entering";
+    const animationName = entrance === "first" ? "menu-card-fade-up" : "menu-card-soft-fade-up";
+
+    cards.forEach((card, index) => {
+      revealedCards.add(card);
+      card.style.setProperty("--menu-reveal-delay", `${index * 120}ms`);
+      // The pending state is removed in the same task as the first animation class.
+      // Animation fill-mode: both prevents a flash during the stagger delay.
+      card.classList.remove("is-reveal-pending");
+      card.classList.add(entranceClass);
+      card.addEventListener("animationend", function handleRevealEnd(event) {
+        if (event.target !== card || event.animationName !== animationName) return;
+        card.classList.remove(entranceClass);
+        card.style.removeProperty("--menu-reveal-delay");
+        card.removeEventListener("animationend", handleRevealEnd);
+      });
+    });
+    if (cards.length) firstRevealDone = true;
+  }
 
   function makePlaceholder() {
     const placeholder = document.createElement("div");
@@ -115,9 +177,14 @@
     title.textContent = labels[activeCategory];
 
     if (swiper) {
+      changingCategory = true;
       swiper.update();
-      swiper.slideTo(0, 0);
+      swiper.slideTo(0, 0, false); // Don't run slide-change reveal during category replacement.
       updateCounter(swiper);
+      preloadNearbyPhotos(swiper);
+      prepareFirstGroup(swiper);
+      changingCategory = false;
+      if (menuIsVisible) revealActiveGroup(swiper, "first");
     }
   }
 
@@ -135,13 +202,11 @@
   });
 
   renderCategory();
-  swiper = new window.Swiper(explorer.querySelector(".menu-swiper"), {
+  swiper = new window.Swiper(swiperElement, {
     slidesPerView: 1,
     slidesPerGroup: 1,
     spaceBetween: 16,
-    speed: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      ? 0
-      : 550,
+    speed: reduceMotion.matches ? 0 : 550,
     grabCursor: true,
     simulateTouch: true,
     watchOverflow: true,
@@ -164,11 +229,39 @@
     on: {
       slideChange: function () {
         updateCounter(this);
+        preloadNearbyPhotos(this);
+      },
+      slideChangeTransitionStart: function () {
+        if (!changingCategory) revealActiveGroup(this, "page");
       },
       breakpoint: function () {
+        if (!this.slides?.length || changingCategory) return;
         updateCounter(this);
+        // The number of visible cards changes at responsive breakpoints.
+        if (!firstRevealDone) prepareFirstGroup(this);
+        else revealActiveGroup(this, "page");
       },
     },
   });
   updateCounter(swiper);
+  preloadNearbyPhotos(swiper);
+  prepareFirstGroup(swiper);
+
+  if ("IntersectionObserver" in window) {
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries.find((item) => item.target === swiperElement);
+        if (!entry) return;
+        menuIsVisible = entry.isIntersecting;
+        if (menuIsVisible) {
+          revealActiveGroup(swiper, firstRevealDone ? "page" : "first");
+        }
+      },
+      { threshold: 0.01 },
+    );
+    visibilityObserver.observe(swiperElement);
+  } else {
+    menuIsVisible = true;
+    revealActiveGroup(swiper, "first");
+  }
 })();

@@ -4,7 +4,7 @@
   gap: clamp(32px, 5vw, 78px);
   align-items: start;
   padding: clamp(28px, 4vw, 52px);
-  border: 1px solid var(--line);
+  border: 2px solid #ffffff;
   background: var(--paper);
 }
 
@@ -158,12 +158,54 @@
   overflow: hidden;
   border: 1px solid #ffb223;
   border-radius: 999px 999px 0 0;
-  background: #F8F5EC;
+  background: #f8f5ec;
   box-shadow: none;
   transition:
-    transform 250ms ease,
-    border-color 250ms ease,
-    box-shadow 250ms ease;
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+/* Full Fade Up on first display/category change. Prepare before repainting. */
+.menu-card.is-reveal-pending {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.menu-card.is-first-entering {
+  animation: menu-card-fade-up 650ms ease-out both;
+  animation-delay: var(--menu-reveal-delay, 0ms);
+}
+
+/* Next pages: keep cards visible during Swiper movement; a softer entrance
+   avoids the opacity=0 blink that was happening on every slide change. */
+.menu-card.is-page-entering {
+  animation: menu-card-soft-fade-up 650ms ease-out both;
+  animation-delay: calc(160ms + var(--menu-reveal-delay, 0ms));
+}
+
+@keyframes menu-card-soft-fade-up {
+  from {
+    opacity: 0.8;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes menu-card-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .menu-card-media {
@@ -181,7 +223,7 @@
   height: 100%;
   border-radius: 999px 999px 0 0;
   object-fit: cover;
-  transition: transform 250ms ease;
+  transition: transform 500ms ease;
 }
 
 .menu-card-placeholder {
@@ -191,7 +233,14 @@
   place-items: center;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 45%, transparent 0 24%, rgb(52 72 58 / 9%) 24.3% 24.7%, transparent 25% 35%, rgb(52 72 58 / 8%) 35.3% 35.7%, transparent 36%),
+    radial-gradient(
+      ellipse at 50% 45%,
+      transparent 0 24%,
+      rgb(52 72 58 / 9%) 24.3% 24.7%,
+      transparent 25% 35%,
+      rgb(52 72 58 / 8%) 35.3% 35.7%,
+      transparent 36%
+    ),
     linear-gradient(155deg, #eee9dc, #d9dece);
   color: var(--green);
 }
@@ -212,7 +261,7 @@
 
 .menu-card-copy h3 {
   margin: 0;
-  color: #34483A;
+  color: #34483a;
   font-size: clamp(1rem, 1.35vw, 1.2rem);
   font-weight: 600;
   letter-spacing: -0.035em;
@@ -234,7 +283,7 @@
 
 .menu-card-price {
   margin-top: auto;
-  color: #946D50;
+  color: #946d50;
   font-size: 1rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -242,13 +291,13 @@
 
 @media (hover: hover) and (pointer: fine) {
   .menu-explorer .menu-card:hover {
-    transform: translateY(-5px);
-    border-color: #34483A;
+    transform: translateY(-6px);
+    border-color: #34483a;
     box-shadow: 0 10px 24px rgb(52 72 58 / 9%);
   }
 
   .menu-explorer .menu-card:hover .menu-card-media img {
-    transform: scale(1.03);
+    transform: scale(1.06);
   }
 }
 
@@ -369,7 +418,7 @@
   }
 
   .menu-categories button {
-    min-height: 38px;
+    min-height: 44px;
     flex: 0 0 auto;
     padding: 8px 13px;
     border: 1px solid var(--line);
@@ -405,8 +454,8 @@
   }
 
   .menu-explorer-controls button {
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
   }
 
   .menu-swiper {
@@ -437,9 +486,19 @@
 
 @media (prefers-reduced-motion: reduce) {
   .menu-card,
+  .menu-card.is-reveal-pending,
+  .menu-card.is-first-entering,
+  .menu-card.is-page-entering,
   .menu-card-media img,
   .menu-categories button,
   .menu-explorer-controls button {
     transition: none;
+    animation: none;
+    opacity: 1;
+  }
+
+  .menu-explorer .menu-card:hover,
+  .menu-explorer .menu-card:hover .menu-card-media img {
+    transform: none;
   }
 }

@@ -449,6 +449,11 @@
   .motion-gallery {
     padding: 30px 0 40px;
   }
+  .motion-gallery .gallery-prev,
+  .motion-gallery .gallery-next {
+    width: 44px;
+    height: 44px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-slide {

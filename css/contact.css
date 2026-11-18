@@ -99,4 +99,9 @@
   .contact-card {
     padding: 22px;
   }
+  .consent input {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+  }
 }

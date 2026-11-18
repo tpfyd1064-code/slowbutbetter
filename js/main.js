@@ -100,9 +100,13 @@ if (detailGallery) {
       );
     detailTitle.textContent = category.title;
     detailGrid.replaceChildren();
+    // CSS에서 외관/실내/베이커리를 구분할 수 있게 표시합니다.
+    detailGrid.dataset.category = card.dataset.galleryCategory;
 
     files.forEach((file, index) => {
       const image = document.createElement("img");
+      // 각 사진 파일명으로 개별 비율/보이는 위치를 조정할 수 있게 표시합니다.
+      image.dataset.photo = file;
       image.src = `images/${category.folder || "food"}/${file}`;
       image.alt = `${category.title} 사진 ${index + 1}`;
       image.loading = "lazy";
@@ -158,6 +162,7 @@ if (homepageHero && homepageSecondScreen) {
   const homepageHeader = document.querySelector(".home-page .site-header");
   const desktopViewport = window.matchMedia("(min-width: 1024px)");
   let wheelTransitionLocked = false;
+  const wheelTransitionDuration = 300;
 
   function updateHeaderSpace() {
     const headerHeight = homepageHeader
@@ -172,11 +177,42 @@ if (homepageHero && homepageSecondScreen) {
   updateHeaderSpace();
   window.addEventListener("resize", updateHeaderSpace, { passive: true });
 
+  function scrollToHomeScreen(destination) {
+    const startY = window.scrollY;
+    const destinationY = destination.getBoundingClientRect().top + startY;
+
+    if (reducedMotion) {
+      window.scrollTo(0, destinationY);
+      wheelTransitionLocked = false;
+      return;
+    }
+
+    const startTime = performance.now();
+    function animateScroll(timestamp) {
+      const progress = Math.min(
+        (timestamp - startTime) / wheelTransitionDuration,
+        1,
+      );
+      const easedProgress = 0.5 - Math.cos(Math.PI * progress) / 2;
+      window.scrollTo(0, startY + (destinationY - startY) * easedProgress);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(animateScroll);
+      } else {
+        window.scrollTo(0, destinationY);
+        wheelTransitionLocked = false;
+      }
+    }
+
+    window.requestAnimationFrame(animateScroll);
+  }
+
   window.addEventListener(
     "wheel",
     (event) => {
       if (!desktopViewport.matches || event.defaultPrevented) return;
-      if (!event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (!event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY))
+        return;
 
       const eventTarget = event.target;
       if (
@@ -211,13 +247,7 @@ if (homepageHero && homepageSecondScreen) {
 
       event.preventDefault();
       wheelTransitionLocked = true;
-      window.setTimeout(() => {
-        wheelTransitionLocked = false;
-      }, 750);
-      destination.scrollIntoView({
-        behavior: reducedMotion ? "auto" : "smooth",
-        block: "start",
-      });
+      scrollToHomeScreen(destination);
     },
     { passive: false },
   );
